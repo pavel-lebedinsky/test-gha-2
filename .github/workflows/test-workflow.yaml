@@ -9,7 +9,7 @@ on:
       bu:
         type: string
         required: true
-        default: 'nation-news'
+        default: 'news'
       environment:
         type: string
         required: true
