@@ -1,0 +1,30 @@
+name: Test Manual Workflow
+env:
+  REGISTRY: ghcr.io
+  REPO: ${{ format('ghcr.io/{0}/test-gha', github.repository_owner) }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      bu:
+        type: string
+        required: true
+        default: 'nation-news'
+      environment:
+        type: string
+        required: true
+        default: 'dev'
+
+jobs:
+  test-job:
+    name: Test job (configuration extraction)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: 
+        run: |
+          #!/bin/bash
+          
+          printenv
+      
