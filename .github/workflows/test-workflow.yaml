@@ -19,6 +19,7 @@ jobs:
   test-job:
     name: Test job (configuration extraction)
     runs-on: ubuntu-latest
+    environment: ${{ inputs.bu }}-${{ inputs.environment }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -26,5 +27,6 @@ jobs:
         run: |
           #!/bin/bash
           
-          printenv
+          # printenv
+          echo "${vars.ENV_VAR}"
       
