@@ -7,8 +7,9 @@ try {
   const platform = core.getInput('platform');
 
   const dataRaw = fs.readFileSync(configPath);
+  console.log(dataRaw);
   const data = JSON.parse(dataRaw);
-
+  console.log(data[platform]);
 
   core.setOutput("config", data[platform]);
   // Get the JSON webhook payload for the event that triggered the workflow
