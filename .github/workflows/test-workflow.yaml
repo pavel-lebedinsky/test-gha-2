@@ -23,6 +23,10 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+      - name: npm install
+        working-directory: ./.github/workflows/actions/platform-load
+        run: |
+          npm install
       - name: Load platform config
         id:   platform
         uses: ./.github/workflows/actions/platform-load
