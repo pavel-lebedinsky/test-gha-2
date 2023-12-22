@@ -6,12 +6,6 @@
 		"dai":    "provider-y"
 	},
     "sports": {
-	    "flows":  ["live", "vod"],
-		"edge":   ["fastly", "cloudfront"],
-		"shield": ["fastly", "cloudfront"],
-		"dai":    "provider-y"
-	},
-	"weather": {
 	    "flows":  ["vod"],
 		"edge":   ["fastly", "cloudfront"],
 		"shield": ["fastly", "cloudfront"],
