@@ -2,9 +2,11 @@ name: Load Platform Config
 inputs:
   platform:
     required: true
+  config:
+    required: true
 outputs:
-  time:
-    description: The time we greeted you
+  config:
+    description: Platform configuration
 runs:
   using: node20
   main:  index.js

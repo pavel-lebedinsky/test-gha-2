@@ -20,15 +20,23 @@ jobs:
     name: Test job (configuration extraction)
     runs-on: ubuntu-latest
     environment: ${{ inputs.bu }}-${{ inputs.environment }}
-    env:
-      ENV_VAR: ${{vars.ENV_VAR}}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
+      - name: Load platform config
+        id:   platform
+        uses: .github/actions/platform-load
+        with:
+          config: config/platforms.json
+          platform: ${{ inputs.bu }}
       - name: Print
+        env:
+          ENV_VAR: ${{vars.ENV_VAR}}
+          CFG: ${{steps.platform.dai}}
         run: |
           #!/bin/bash
           
           # printenv
           echo "$ENV_VAR"
+          echo "$CFG"
       
