@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Load platform config
         id:   platform
-        uses: .github/actions/platform-load/action
+        uses: .github/actions/platform-load
         with:
           config: config/platforms.json
           platform: ${{ inputs.bu }}

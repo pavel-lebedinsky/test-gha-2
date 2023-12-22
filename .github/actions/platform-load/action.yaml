@@ -1,4 +1,4 @@
-name: Load Platform Config
+name: 'Load Platform Config'
 inputs:
   platform:
     required: true
@@ -6,7 +6,7 @@ inputs:
     required: true
 outputs:
   config:
-    description: Platform configuration
+    description: 'Platform configuration'
 runs:
-  using: node20
-  main:  index.js
+  using: 'node20'
+  main:  'index.js'
