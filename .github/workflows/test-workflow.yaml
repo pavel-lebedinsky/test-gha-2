@@ -44,7 +44,7 @@ jobs:
           # cat config/platforms.json | jq '.["news"].dai    | @json
           
           # echo "FLOWS=$(cat config/platforms.json | jq '.["news"].flows  | @json)" >> "$GITHUB_OUTPUT"
-          echo "DAI=$(cat config/platforms.json | jq '.["news"].dai  | @json')\n" >> "$GITHUB_OUTPUT"
+          echo "DAI=$(cat config/platforms.json | jq '.["news"].dai  | @json')" >> "$GITHUB_OUTPUT"
       - name: Print
         env:
           ENV_VAR: ${{vars.ENV_VAR}}
@@ -54,5 +54,5 @@ jobs:
           
           # printenv
           echo "$ENV_VAR"
-          echo "$CFG"
+          echo $CFG
       
