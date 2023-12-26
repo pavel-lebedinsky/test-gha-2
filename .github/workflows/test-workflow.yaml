@@ -33,6 +33,12 @@ jobs:
       #   with:
       #     config: config/platforms.json
       #     platform: ${{ inputs.bu }}
+      - name: Load platform config
+        id:   platform
+        run: |
+          #!/bin/bash
+          
+          cat config/platforms.json
       - name: Print
         env:
           ENV_VAR: ${{vars.ENV_VAR}}
