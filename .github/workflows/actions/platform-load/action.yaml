@@ -5,8 +5,14 @@ inputs:
   config:
     required: true
 outputs:
-  config:
-    description: 'Platform configuration'
+  flows:
+    required: true
+  edge:
+    required: true
+  shield:
+    required: true
+  dai:
+    required: true
 runs:
   using: 'node20'
   main:  'index.js'

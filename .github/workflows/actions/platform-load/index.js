@@ -7,11 +7,12 @@ try {
   const platform = core.getInput('platform');
 
   const dataRaw = fs.readFileSync(configPath);
-  console.log(dataRaw);
   const data = JSON.parse(dataRaw);
-  console.log(data[platform]);
-
-  core.setOutput("config", data[platform]);
+  
+  core.setOutput("flows", data[platform].flows);
+  core.setOutput("edge", data[platform].edge);
+  core.setOutput("shield", data[platform].shield);
+  core.setOutput("dai", data[platform].dai);
   // Get the JSON webhook payload for the event that triggered the workflow
   // const payload = JSON.stringify(github.context.payload, undefined, 2)
   // console.log(`The event payload: ${payload}`);
