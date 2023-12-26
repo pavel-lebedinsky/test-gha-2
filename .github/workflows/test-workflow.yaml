@@ -47,6 +47,7 @@ jobs:
           echo "EDGE=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].edge | @json')" >> "$GITHUB_OUTPUT"
           echo "SHIELD=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].shield | @json')" >> "$GITHUB_OUTPUT"
           echo "DAI=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].dai | @json')" >> "$GITHUB_OUTPUT"
+          echo "TEST=some value" >> "$GITHUB_OUTPUT"
       - name: Print
         env:
           ENV_VAR: ${{vars.ENV_VAR}}
