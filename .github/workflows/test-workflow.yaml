@@ -14,6 +14,9 @@ on:
         type: string
         required: true
         default: 'dev'
+  push:
+    branches:
+      - dev
 
 jobs:
   test-job:
@@ -34,11 +37,9 @@ jobs:
           echo "DAI=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].dai | @json')" >> "$GITHUB_OUTPUT"
       - name: Print
         env:
-          CFG: ${{steps.platform.outputs.FLOWS}}
+          FLOWS: ${{steps.platform.outputs.FLOWS}}
         run: |
           #!/bin/bash
           
-          # printenv
-          echo "$ENV_VAR"
-          echo "$CFG"
+          echo "$FLOWS"
       
