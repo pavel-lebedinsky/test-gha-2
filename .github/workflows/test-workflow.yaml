@@ -38,7 +38,13 @@ jobs:
         run: |
           #!/bin/bash
           
-          cat config/platforms.json
+          # cat config/platforms.json | jq '.["news"].flows  | @json
+          # cat config/platforms.json | jq '.["news"].edge   | @json
+          # cat config/platforms.json | jq '.["news"].shield | @json
+          # cat config/platforms.json | jq '.["news"].dai    | @json
+          
+          # echo "FLOWS=$(cat config/platforms.json | jq '.["news"].flows  | @json)" >> "$GITHUB_OUTPUT"
+          echo "DAI=$(cat config/platforms.json | jq '.["news"].dai  | @json)" >> "$GITHUB_OUTPUT"
       - name: Print
         env:
           ENV_VAR: ${{vars.ENV_VAR}}
