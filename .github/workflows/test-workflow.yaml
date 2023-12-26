@@ -48,7 +48,7 @@ jobs:
       - name: Print
         env:
           ENV_VAR: ${{vars.ENV_VAR}}
-          CFG: ${{steps.platform.dai}}
+          CFG: ${{steps.platform.DAI}}
         run: |
           #!/bin/bash
           
