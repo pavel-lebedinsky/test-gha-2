@@ -43,16 +43,19 @@ jobs:
           # cat config/platforms.json | jq '.["news"].shield | @json
           # cat config/platforms.json | jq '.["news"].dai    | @json
           
-          # echo "FLOWS=$(cat config/platforms.json | jq '.["news"].flows  | @json)" >> "$GITHUB_OUTPUT"
-          echo "DAI=$(cat config/platforms.json | jq '.["news"].dai  | @json')" >> "$GITHUB_OUTPUT"
+          echo "FLOWS=$(cat config/platforms.json | jq '.["news"].flows | @json')" >> "$GITHUB_OUTPUT"
+          echo "EDGE=$(cat config/platforms.json | jq '.["news"].edge | @json')" >> "$GITHUB_OUTPUT"
+          echo "SHIELD=$(cat config/platforms.json | jq '.["news"].shield | @json')" >> "$GITHUB_OUTPUT"
+          echo "DAI=$(cat config/platforms.json | jq '.["news"].dai | @json')" >> "$GITHUB_OUTPUT"
       - name: Print
         env:
           ENV_VAR: ${{vars.ENV_VAR}}
-          CFG: ${{steps.platform.outputs.DAI}}
+#          CFG: ${{steps.platform.outputs.DAI}}
+          CFG: ${{join(steps.platform.outputs.*, '\n')}}
         run: |
           #!/bin/bash
           
           # printenv
           echo "$ENV_VAR"
-          echo $CFG
+          echo "$CFG"
       
