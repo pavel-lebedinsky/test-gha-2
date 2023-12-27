@@ -2,6 +2,7 @@ name: Test Manual Workflow
 env:
   REGISTRY: ghcr.io
   REPO: ${{ format('ghcr.io/{0}/test-gha', github.repository_owner) }}
+  TERRAFORM: 'https://releases.hashicorp.com/terraform/1.5.0/terraform_1.5.0_linux_amd64.zip'
 
 on:
   workflow_dispatch:
@@ -14,9 +15,6 @@ on:
         type: string
         required: true
         default: 'dev'
-  push:
-    branches:
-      - dev
 
 jobs:
   test-job:
@@ -31,10 +29,11 @@ jobs:
         run: |
           #!/bin/bash
           
-          echo "FLOWS=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].flows | @json')" >> "$GITHUB_OUTPUT"
-          echo "EDGE=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].edge | @json')" >> "$GITHUB_OUTPUT"
-          echo "SHIELD=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].shield | @json')" >> "$GITHUB_OUTPUT"
-          echo "DAI=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].dai | @json')" >> "$GITHUB_OUTPUT"
+          echo "FLOWS=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].flows')" >> "$GITHUB_OUTPUT"
+          echo "EDGE=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].edge')" >> "$GITHUB_OUTPUT"
+          echo "SHIELD=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].shield')" >> "$GITHUB_OUTPUT"
+          echo "DAI=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].dai')" >> "$GITHUB_OUTPUT"
+
       - name: Print
         env:
           FLOWS: ${{steps.platform.outputs.FLOWS}}
@@ -42,4 +41,8 @@ jobs:
           #!/bin/bash
           
           echo "$FLOWS"
-      
+
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_wrapper: false
+          terraform_version: 1.5.0
