@@ -35,7 +35,7 @@ jobs:
           echo "DAI=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].dai | @json')" >> "$GITHUB_OUTPUT"
 
       - name: Print live
-        if: contains(steps.platform.outputs.FLOWS, 'live')
+        if: contains(steps.platform.outputs.FLOWS, '\"live\"')
         env:
           FLOWS: ${{steps.platform.outputs.FLOWS}}
         run: |
@@ -44,7 +44,7 @@ jobs:
           echo "$FLOWS"
 
       - name: Print test
-        if: contains(steps.platform.outputs.FLOWS, 'test')
+        if: contains(steps.platform.outputs.FLOWS, '\"test\"')
         env:
           FLOWS: ${{steps.platform.outputs.FLOWS}}
         run: |

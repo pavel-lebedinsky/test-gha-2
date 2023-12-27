@@ -2,7 +2,8 @@
   "news": {
     "flows": [
       "live",
-      "vod"
+      "vod",
+      "ivod"
     ],
     "edge": [
       "fastly",
