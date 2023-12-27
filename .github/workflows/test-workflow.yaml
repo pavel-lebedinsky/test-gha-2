@@ -29,12 +29,22 @@ jobs:
         run: |
           #!/bin/bash
           
-          echo "FLOWS=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].flows')" >> "$GITHUB_OUTPUT"
-          echo "EDGE=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].edge')" >> "$GITHUB_OUTPUT"
-          echo "SHIELD=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].shield')" >> "$GITHUB_OUTPUT"
-          echo "DAI=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].dai')" >> "$GITHUB_OUTPUT"
+          echo "FLOWS=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].flows | @json')" >> "$GITHUB_OUTPUT"
+          echo "EDGE=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].edge | @json')" >> "$GITHUB_OUTPUT"
+          echo "SHIELD=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].shield | @json')" >> "$GITHUB_OUTPUT"
+          echo "DAI=$(cat config/platforms.json | jq '.["${{ inputs.bu }}"].dai | @json')" >> "$GITHUB_OUTPUT"
 
-      - name: Print
+      - name: Print live
+        if: contains(steps.platform.outputs.FLOWS, "live")
+        env:
+          FLOWS: ${{steps.platform.outputs.FLOWS}}
+        run: |
+          #!/bin/bash
+          
+          echo "$FLOWS"
+
+      - name: Print test
+        if: contains(steps.platform.outputs.FLOWS, "test")
         env:
           FLOWS: ${{steps.platform.outputs.FLOWS}}
         run: |
