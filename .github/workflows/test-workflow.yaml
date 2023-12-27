@@ -44,7 +44,7 @@ jobs:
           echo "$FLOWS"
 
       - name: Print test
-        if: contains(steps.platform.outputs.FLOWS, '\"test\"')
+        if: contains(steps.platform.outputs.FLOWS, '\"vod\"')
         env:
           FLOWS: ${{steps.platform.outputs.FLOWS}}
         run: |
